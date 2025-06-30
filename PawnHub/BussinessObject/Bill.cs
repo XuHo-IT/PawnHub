@@ -9,7 +9,7 @@ namespace BussinessObject
         public int BillId { get; set; }
 
         [ForeignKey("ShopItem")]
-        public int ShopItemId { get; set; }
+        public int? ShopItemId { get; set; } // ✅ Now optional
 
         [ForeignKey("User")]
         public int UserId { get; set; }
@@ -20,5 +20,8 @@ namespace BussinessObject
         public ShopItem ShopItem { get; set; }
         public User User { get; set; }
 
+        // Optional for rebuy (you can add this if needed)
+        public int? PawnContractId { get; set; }
     }
+
 }
