@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using BussinessObject;
+﻿using BussinessObject;
 using Repository;
+using System.Windows;
 
 namespace WpfApp
 {
@@ -15,22 +15,19 @@ namespace WpfApp
         public BillMemberWindow()
         {
             InitializeComponent();
-            billRepository = new BillRepository(); // Initialize your repository
-            LoadUserBills(); // Load bills when the window is opened
+            billRepository = new BillRepository();
+            LoadUserBills();
         }
 
-        // Method to load user bills and bind them to the DataGrid
         private void LoadUserBills()
         {
-            var userBills = billRepository.GetBillsByUserId(loggedInUserId);
-            PawnItemsGrid.ItemsSource = userBills; // Set the DataGrid's source to the fetched bills
+            ShopItemsGrid.ItemsSource = billRepository.GetShopItemBillsByUserId(loggedInUserId);
+            PawnContractsGrid.ItemsSource = billRepository.GetPawnContractBillsByUserId(loggedInUserId);
         }
+
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-        // Optionally, you can call LoadUserBills() from other parts of your code 
-        // if you need to refresh the data after an operation.
     }
 }

@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using BussinessObject;
+﻿using BussinessObject;
 using Repository;
+using System.Windows;
 
 namespace WpfApp
 {
@@ -16,12 +16,14 @@ namespace WpfApp
         private readonly UserRepository userRepository;
         private List<TransactionDetailViewModel> transactionDetails;
         private readonly CapitalRepository capitalRepository;
+        private readonly BillRepository billRepository;
 
         public ReBuyMemberWindow()
         {
             pawnContractRepository = new PawnContractRepository();
             itemRepository = new ItemRepository();
             userRepository = new UserRepository();
+            billRepository = new BillRepository();
             capitalRepository = new CapitalRepository();
 
             InitializeComponent();
@@ -80,7 +82,15 @@ namespace WpfApp
                 decimal totalIncome = capitalRepository.GetTotalIncome();
                 totalIncome += selectedTransaction.ItemValue;
                 capitalRepository.UpdateTotalIncome(totalIncome);
-                pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
+                var bill = new Bill
+                {
+                    PawnContractId = selectedTransaction.ContractId,
+                    UserId = loggedInUserId,
+                    DateBuy = DateTime.Now,
+
+                };
+                billRepository.InsertBill(bill);
+                //pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
 
 
                 transactionDetails.Remove(selectedTransaction);
