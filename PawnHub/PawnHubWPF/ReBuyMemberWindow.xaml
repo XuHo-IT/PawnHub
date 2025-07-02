@@ -10,10 +10,24 @@
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
+    
     <Grid>
-        <TextBlock Text="Rebuy Your Items" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
-
-        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="10,20,10,0"   Background="Gray" Height="320px">
+        <StackPanel Height="42" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="ReBuy" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+Padding="10,5"
+Background="Red"
+Foreground="White"
+FontWeight="Bold"
+Click="LogoutButton_Click"
+Width="63"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="0,42,0,114" Background="Gray" SelectionChanged="dataGridPawn_SelectionChanged">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Your CID" Binding="{Binding CID}" Width="100"/>
                 <DataGridTextColumn Header="Your Name" Binding="{Binding UserRealName}" Width="130"/>

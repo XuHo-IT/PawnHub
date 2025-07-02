@@ -32,10 +32,21 @@
         </DataGrid>
 
         <!-- Finalize Button -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 430 0 0">
-            <Button Content="Back to Main Menu" Width="150" Height="40px" Background="Red" Foreground="White" Click="Menu_Click"/>
-            <Button Content="Accept" Width="150" Height="40px" Background="Green" Foreground="White" Click="AcceptButton_Click"/>
-            <Button Content="Deny" Width="150" Height="40px" Background="Pink" Foreground="White" Click="DenyButton_Click"/>
+        <Button Content="Accept" Width="155" Height="60" Margin="635,432,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Green" Foreground="White" Click="AcceptButton_Click" />
+
+        <StackPanel Height="42" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="PawnAdmin" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+ Padding="10,5"
+ Background="Red"
+ Foreground="White"
+ FontWeight="Bold"
+ Click="LogoutButton_Click"
+ Width="63"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

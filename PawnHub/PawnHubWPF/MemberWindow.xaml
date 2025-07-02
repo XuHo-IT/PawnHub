@@ -13,10 +13,16 @@
     <Grid>
         <DockPanel>
             <!-- Menu Bar -->
-            <Menu DockPanel.Dock="Top" Background="gray" Height="35px">
-                <MenuItem Header="User's information" Foreground="White" Click="UserInformationMenuItem_Click" Height="35" Margin="20 0 0 0" FontSize="14px"/>
-                <MenuItem Header="Store's Information"  Foreground="White" Click="ShopInformationMenuItem_Click" Margin="30 0 0 0" FontSize="14px"/>
-                <MenuItem Header="Sign Out"  Foreground="Pink" Click="SignOutMenuItem_Click" Margin="400 0 0 0" FontSize="14px"/>
+            <Menu DockPanel.Dock="Top" Background="gray">
+                <MenuItem Header="User's information" Foreground="White" Click="UserInformationMenuItem_Click"/>
+                <MenuItem Header="Store's Information"  Foreground="White" Click="ShopInformationMenuItem_Click"/>
+                <Button Content="Logout"
+Padding="10,5"
+Background="Red"
+Foreground="White"
+FontWeight="Bold"
+Click="LogoutButton_Click"
+Width="63"/>
             </Menu>
 
 

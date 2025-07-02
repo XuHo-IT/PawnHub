@@ -1,5 +1,4 @@
 ﻿using BussinessObject;
-using PawnHubWPF;
 using Repository;
 using System.Windows;
 

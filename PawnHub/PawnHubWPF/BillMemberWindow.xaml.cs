@@ -29,5 +29,15 @@ namespace WpfApp
         {
             this.Close();
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+
+            var loginWindow = new Login();
+            loginWindow.Show();
+
+            this.Close();
+        }
     }
 }
