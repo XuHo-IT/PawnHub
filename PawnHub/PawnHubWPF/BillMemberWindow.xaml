@@ -5,18 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="BillMemberWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="BillMemberWindow" Height="570" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
-        <StackPanel Height="42" VerticalAlignment="Top">
-            <StackPanel Height="19">
-                <Label Content="Your Bill" Height="20" Padding="0,0,0,0" Background="Gray"/>
-            </StackPanel>
-        </StackPanel>
+        <TextBlock Text="Your Bills" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 20"/>
 
-        <TabControl Margin="10,42,10,90">
+        <TabControl Margin="10,100,10,90">
             <!-- Shop Items Tab -->
             <TabItem Header="Shop Items">
                 <DataGrid Name="ShopItemsGrid" AutoGenerateColumns="False" IsReadOnly="True" Background="Gray">
@@ -43,6 +40,9 @@
             </TabItem>
         </TabControl>
 
-        <Button Content="Back to Main Menu" Width="128" Margin="10,356,0,22" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 450 0 0">
+            <Button Content="Back to Main Menu" Width="150" Height="40px" Background="Red" Foreground="White" Click="Menu_Click"/>
+        </StackPanel>
+        
     </Grid>
 </Window>

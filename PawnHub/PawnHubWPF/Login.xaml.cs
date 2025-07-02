@@ -52,6 +52,11 @@ namespace WpfApp
             }
         }
 
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             EmailTextBox.Clear();

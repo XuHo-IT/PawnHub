@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="ReBuyMemberWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="ReBuyMemberWindow" Height="570" Width="1350">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
-    <Grid Margin="0,0,0,-41">
-        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="0,0,0,156" Background="Gray">
+    <Grid>
+        <TextBlock Text="Rebuy Your Items" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
+
+        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="10,20,10,0"   Background="Gray" Height="320px">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Your CID" Binding="{Binding CID}" Width="100"/>
-                <DataGridTextColumn Header="Your Name" Binding="{Binding UserRealName}" Width="200"/>
-                <DataGridTextColumn Header="Your Telephone" Binding="{Binding UserPhone}" Width="200"/>
-                <DataGridTextColumn Header="Your Email" Binding="{Binding UserEmail}" Width="200"/>
-                <DataGridTextColumn Header="Your Address" Binding="{Binding Address}" Width="200"/>
+                <DataGridTextColumn Header="Your Name" Binding="{Binding UserRealName}" Width="130"/>
+                <DataGridTextColumn Header="Your Telephone" Binding="{Binding UserPhone}" Width="100"/>
+                <DataGridTextColumn Header="Your Email" Binding="{Binding UserEmail}" Width="180"/>
+                <DataGridTextColumn Header="Your Address" Binding="{Binding Address}" Width="150"/>
                 <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
                 <DataGridTextColumn Header="Item Description" Binding="{Binding Description}" Width="150"/>
                 <DataGridTextColumn Header="Item Money" Binding="{Binding ItemValue}" Width="100"/>
@@ -25,16 +28,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Buy" Width="160" Height="55" Margin="630,369,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Green" Foreground="White" Click="BuyButton_Click" />
-        <Button Content="Back to Main Menu" Width="175" Margin="10,363,0,56" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" >
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.562"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.903"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 430 0 0">
+            <Button Content="Back to Main Menu" Width="150" Height="40px" Background="Red" Foreground="White" Click="Menu_Click"/>
+            <Button Content="Buy" Width="150" Height="40px" Background="Green" Foreground="White" Click="BuyButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

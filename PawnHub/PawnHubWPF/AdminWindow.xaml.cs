@@ -36,7 +36,9 @@ namespace WpfApp
            ShopInformationWindow userProfileWindow = new ShopInformationWindow();
             userProfileWindow.Show();
         }
+        private void SignOutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
 }
