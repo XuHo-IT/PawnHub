@@ -31,9 +31,18 @@
         <!-- Finalize Button -->
         <Button Content="Accept" Width="155" Height="60" Margin="635,432,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Green" Foreground="White" Click="AcceptButton_Click" />
 
-        <StackPanel Height="19" VerticalAlignment="Top" Background="gray">
-            <StackPanel Height="19">
-                <Label Content="PawnShop Management" Height="20" Padding="0,0,0,0" Foreground="White"/>
+        <StackPanel Height="42" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="PawnAdmin" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+ Padding="10,5"
+ Background="Red"
+ Foreground="White"
+ FontWeight="Bold"
+ Click="LogoutButton_Click"
+ Width="63"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

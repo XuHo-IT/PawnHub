@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using BussinessObject;
+using System.Windows;
 
 namespace WpfApp
 {
@@ -17,7 +18,7 @@ namespace WpfApp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           StatisticAdminWindow statisticAdminWindow = new StatisticAdminWindow();
+            StatisticAdminWindow statisticAdminWindow = new StatisticAdminWindow();
             statisticAdminWindow.Show();
         }
 
@@ -33,10 +34,19 @@ namespace WpfApp
         }
         private void ShopInformationMenuItem_Click(object sender, RoutedEventArgs e)
         {
-           ShopInformationWindow userProfileWindow = new ShopInformationWindow();
+            ShopInformationWindow userProfileWindow = new ShopInformationWindow();
             userProfileWindow.Show();
         }
 
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+
+            var loginWindow = new Login();
+            loginWindow.Show();
+
+            this.Close();
+        }
 
     }
 }
