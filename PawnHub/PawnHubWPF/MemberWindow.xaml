@@ -15,6 +15,13 @@
             <Menu DockPanel.Dock="Top" Background="gray">
                 <MenuItem Header="User's information" Foreground="White" Click="UserInformationMenuItem_Click"/>
                 <MenuItem Header="Store's Information"  Foreground="White" Click="ShopInformationMenuItem_Click"/>
+                <Button Content="Logout"
+Padding="10,5"
+Background="Red"
+Foreground="White"
+FontWeight="Bold"
+Click="LogoutButton_Click"
+Width="63"/>
             </Menu>
 
 

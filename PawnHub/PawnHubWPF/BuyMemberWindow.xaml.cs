@@ -1,7 +1,10 @@
-﻿using System.Windows;
-using BussinessObject;
+﻿using BussinessObject;
 using DataAccessLayer;
 using Repository;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Windows;
 
 namespace WpfApp
 {
@@ -28,7 +31,7 @@ namespace WpfApp
         {
 
         }
-        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        private async void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
             if (PawnItemsGrid.SelectedItem is ShopItem selectedItem)
             {
@@ -37,6 +40,39 @@ namespace WpfApp
 
                 if (result == MessageBoxResult.Yes)
                 {
+                    try
+                    {
+                        using var httpClient = new HttpClient();
+                        var apiUrl = "https://localhost:7155/api/Stripe/create-checkout-session ";
+
+                        var payload = new
+                        {
+                            ItemName = selectedItem.Name,
+                            Price = selectedItem.Price
+                        };
+
+                        var response = await httpClient.PostAsJsonAsync(apiUrl, payload);
+                        response.EnsureSuccessStatusCode();
+
+                        var json = await response.Content.ReadFromJsonAsync<StripeResponse>();
+                        if (!string.IsNullOrEmpty(json?.SessionUrl))
+                        {
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = json.SessionUrl,
+                                UseShellExecute = true
+                            });
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to start Stripe Checkout session.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Payment error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                     decimal totalIncome = capitalRepository.GetTotalIncome();
                     totalIncome += selectedItem.Price;
                     capitalRepository.UpdateTotalIncome(totalIncome);
@@ -79,6 +115,14 @@ namespace WpfApp
             this.Close();
         }
 
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
 
+            var loginWindow = new Login();
+            loginWindow.Show();
+
+            this.Close();
+        }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using BussinessObject;
 using Repository;
-using System;
-using System.Diagnostics.Contracts;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,7 +7,7 @@ namespace WpfApp
 {
     public partial class PawnAdmin : Window
     {
-   
+
         private readonly PawnContractRepository pawnContractRepository;
         private readonly ItemRepository itemRepository;
         private readonly CapitalRepository capitalRepository;
@@ -29,7 +27,7 @@ namespace WpfApp
 
         private void PawnItemsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-       
+
         }
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
@@ -39,17 +37,17 @@ namespace WpfApp
             {
                 var item = itemRepository.GetItemById(selectedItem.ItemId);
 
-       
-                if (capitalRepository.GetTotalExpenditure()- item.Value < 0)
+
+                if (capitalRepository.GetTotalExpenditure() - item.Value < 0)
                 {
                     MessageBox.Show("Sorry, we are out of money. Please consider again.");
-                    return; 
+                    return;
                 }
 
                 pawnContractRepository.ApproveItem(item);
                 decimal totalExpenditure = capitalRepository.GetTotalExpenditure();
                 totalExpenditure -= item.Value;
-                capitalRepository.UpdateTotalExpenditure(totalExpenditure);        
+                capitalRepository.UpdateTotalExpenditure(totalExpenditure);
                 MessageBox.Show("Item accepted.");
                 LoadPendingItems();
             }
@@ -84,6 +82,16 @@ namespace WpfApp
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+
+            var loginWindow = new Login();
+            loginWindow.Show();
+
             this.Close();
         }
     }

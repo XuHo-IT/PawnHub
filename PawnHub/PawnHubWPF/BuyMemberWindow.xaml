@@ -24,8 +24,17 @@
         <Button Content="Back to Main Menu" Width="128" Margin="10,356,0,22" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
 
         <StackPanel Height="42" VerticalAlignment="Top">
-            <StackPanel Height="19">
-                <Label Content="PawnShop Management" Height="20" Padding="0,0,0,0" Background="gray"/>
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="Buying" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+         Padding="10,5"
+         Background="Red"
+         Foreground="White"
+         FontWeight="Bold"
+         Click="LogoutButton_Click"
+         Width="63"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

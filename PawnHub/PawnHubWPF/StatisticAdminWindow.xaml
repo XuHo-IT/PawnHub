@@ -10,15 +10,29 @@
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
     <Grid>
+        <StackPanel Height="42" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="Statistic" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+Padding="10,5"
+Background="Red"
+Foreground="White"
+FontWeight="Bold"
+Click="LogoutButton_Click"
+Width="63"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
         <DockPanel>
 
             <!-- Menu Bar -->
             <Menu DockPanel.Dock="Top"/>
 
             <!-- Tab Control Area -->
-            <TabControl Margin="10" DockPanel.Dock="Top" Height="334">
+            <TabControl Margin="30" DockPanel.Dock="Top" Height="334">
                 <TabItem Header="Pawn Statistics">
-                    <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" Background="Gray" Height="324">
+                    <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" Background="Gray" Height="324" SelectionChanged="dataGridPawn_SelectionChanged" Margin="-4,0,4,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="50"/>
                             <DataGridTextColumn Header="Full Name" Binding="{Binding UserRealName}" Width="200"/>
@@ -76,7 +90,7 @@
             </TabControl>
 
             <!-- Back to Main Menu Button -->
-            <Button Content="Back to Main Menu" Width="165" Height="40" Margin="10" 
+            <Button Content="Back to Main Menu" Width="165" Height="40" 
                     Background="Red" Foreground="White" Click="Menu_Click" 
                     HorizontalAlignment="Left" DockPanel.Dock="Bottom"/>
         </DockPanel>

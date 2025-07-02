@@ -9,10 +9,26 @@
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
+
     <Grid Margin="10">
-        <TextBlock Text="Your Profile" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" Margin="310,-15,0,45"/>
+        <StackPanel Height="42" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray" Width="785">
+                <Label Content="Buying" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+   Padding="10,5"
+   Background="Red"
+   Foreground="White"
+   FontWeight="Bold"
+   Click="LogoutButton_Click"
+   Width="63"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Text="Your Profile" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" Margin="298,-6,0,36"/>
 
         <StackPanel Margin="0,20">
+
             <StackPanel Orientation="Horizontal" Margin="0,5">
                 <TextBlock Text="Your App Name:" Width="120" VerticalAlignment="Center"/>
                 <TextBox x:Name="Username" Width="306" Height="25"/>
