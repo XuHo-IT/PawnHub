@@ -39,9 +39,10 @@ Width="63"/>
                     <Button Content="PAWN" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="25,0,25,0" Click="Button_Click" Foreground="White"/>
                     <Button Content="BUY" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click_1" Foreground="White"/>
                 </UniformGrid>
-                <UniformGrid Columns="2" Width="400">
-                    <Button Content="BILL" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="25,0,25,0" Click="Button_Click_2" Foreground="White"/>
-                    <Button Content="REBUY" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click_3" Foreground="White"/>
+                <UniformGrid Columns="3" Width="458">
+                    <Button Content="BILL" Width="100" Height="50" Background="Orange" FontWeight="Bold" Margin="25,0,25,0" Click="Button_Click_2" Foreground="White"/>
+                    <Button Content="REBUY" Width="100" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click_3" Foreground="White"/>
+                    <Button Content="AI Support" Width="100" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click_3" Foreground="White"/>
                 </UniformGrid>
             </StackPanel>
         </DockPanel>

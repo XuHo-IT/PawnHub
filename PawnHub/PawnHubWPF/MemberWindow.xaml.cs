@@ -1,4 +1,5 @@
 ﻿using BussinessObject;
+using PawnHubWPF;
 using System.Windows;
 
 namespace WpfApp
@@ -30,8 +31,8 @@ namespace WpfApp
         }
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            ReBuyMemberWindow pawnMemberWindow = new ReBuyMemberWindow();
-            pawnMemberWindow.Show();
+            ChatAI chatAI = new ChatAI();
+            chatAI.Show();
         }
         private void UserInformationMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -43,8 +44,7 @@ namespace WpfApp
             ShopInformationWindow userProfileWindow = new ShopInformationWindow();
             userProfileWindow.Show();
         }
-        private void SignOutMenuItem_Click(object sender, RoutedEventArgs e)
-        {
+
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
