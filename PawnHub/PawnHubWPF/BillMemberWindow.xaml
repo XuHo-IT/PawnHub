@@ -10,30 +10,39 @@
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
-        <!-- Account Information Section -->
-
-        <!-- Search Section -->
-
-        <!-- Data Grid for Pawned Items -->
-        <DataGrid Name="PawnItemsGrid" AutoGenerateColumns="False" Margin="10,42,10,90" IsReadOnly="True" Background="Gray">
-            <DataGrid.Columns>
-                <!-- Item Details -->
-              
-                <DataGridTextColumn Header="Item ID" Binding="{Binding ShopItemId}" Width="50"/>
-                <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
-                <DataGridTextColumn Header="DateBuy" Binding="{Binding DateBuy}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-
         <StackPanel Height="42" VerticalAlignment="Top">
             <StackPanel Height="19">
-                <Label Content="Your Bill" Height="20" Padding="0,0,0,0" Background="gray"/>
+                <Label Content="Your Bill" Height="20" Padding="0,0,0,0" Background="Gray"/>
             </StackPanel>
         </StackPanel>
 
-        <Button Content="Back to Main Menu" Width="128" Margin="10,356,0,22" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
+        <TabControl Margin="10,42,10,90">
+            <!-- Shop Items Tab -->
+            <TabItem Header="Shop Items">
+                <DataGrid Name="ShopItemsGrid" AutoGenerateColumns="False" IsReadOnly="True" Background="Gray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Item ID" Binding="{Binding ShopItemId}" Width="50"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
+                        <DataGridTextColumn Header="Date Buy" Binding="{Binding DateBuy}" Width="100"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <!-- Pawn Contracts Tab -->
+            <TabItem Header="Pawn Contracts">
+                <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" IsReadOnly="True" Background="Gray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Contract ID" Binding="{Binding PawnContractId}" Width="50"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
+                        <DataGridTextColumn Header="Date Buy" Binding="{Binding DateBuy}" Width="100"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
 
+        <Button Content="Back to Main Menu" Width="128" Margin="10,356,0,22" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
     </Grid>
 </Window>

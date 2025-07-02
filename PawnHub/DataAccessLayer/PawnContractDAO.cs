@@ -1,4 +1,5 @@
 ﻿using BussinessObject;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
 {
@@ -94,18 +95,28 @@ namespace DataAccessLayer
 
         public void ApproveItem(Item item)
         {
-            item.IsApproved = true;
-            var contract = new PawnContract
+            using (var context = new PawnShopContext())
             {
-                ItemId = item.ItemId,
-                UserId = item.UserId,
-                LoanAmount = item.Value,
-                ContractDate = DateTime.Now,
-                ExpirationDate = item.ExpirationDate
-            };
-            PawnContractDAO.Instance.AddContract(contract);
-            _context.SaveChanges();
+                var dbItem = context.Item.FirstOrDefault(i => i.ItemId == item.ItemId);
+                if (dbItem != null)
+                {
+                    dbItem.IsApproved = true;
+
+                    var contract = new PawnContract
+                    {
+                        ItemId = dbItem.ItemId,
+                        UserId = dbItem.UserId,
+                        LoanAmount = dbItem.Value,
+                        ContractDate = DateTime.Now,
+                        ExpirationDate = dbItem.ExpirationDate
+                    };
+
+                    context.PawnContracts.Add(contract);
+                    context.SaveChanges();
+                }
+            }
         }
+
 
         public void RemoveItem(int contractId)
         {
@@ -126,7 +137,8 @@ namespace DataAccessLayer
         }
         public List<PawnContract> GetAllContracts()
         {
-            return _context.PawnContracts.ToList();
+            return _context.PawnContracts.Include(pc => pc.Item)
+                      .ToList();
         }
     }
 }

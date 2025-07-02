@@ -20,7 +20,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Contract Id" Width="110" Binding="{Binding ContractId}" />
                 <DataGridTextColumn Header="Pawn Item" Width="100" Binding="{Binding ItemId}" />
-                <DataGridTextColumn Header="Item Description" Width="170" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Item Description" Width="170" Binding="{Binding  Item.Description}" />
                 <DataGridTextColumn Header="User Id" Width="100" Binding="{Binding UserId}" />
                 <DataGridTextColumn Header="Pawn Money" Width="100" Binding="{Binding LoanAmount}" />
                 <DataGridTextColumn Header="Pawn Date" Width="100" Binding="{Binding ContractDate}" />
