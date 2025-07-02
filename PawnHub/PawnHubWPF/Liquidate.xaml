@@ -5,26 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Liquidate" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Liquidate" Height="570" Width="850">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    <Grid Margin="0,0,0,4">
-
+    <Grid>
+        <TextBlock Text="Pawn Shop Management" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
         <!-- Search Section -->
 
 
 
         <!-- Data Grid for Pawned Items -->
-        <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" Margin="10,34,10,81" CanUserAddRows="False" SelectionMode="Single" Background="Gray">
+        <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" Margin="10,110,10,81" CanUserAddRows="False" SelectionMode="Single" Background="Gray">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Contract Id" Width="110" Binding="{Binding ContractId}" />
-                <DataGridTextColumn Header="Pawn Item" Width="100" Binding="{Binding ItemId}" />
+                <DataGridTextColumn Header="Contract Id" Width="80" Binding="{Binding ContractId}" />
+                <DataGridTextColumn Header="Pawn Item" Width="80" Binding="{Binding ItemId}" />
                 <DataGridTextColumn Header="Item Description" Width="170" Binding="{Binding  Item.Description}" />
-                <DataGridTextColumn Header="User Id" Width="100" Binding="{Binding UserId}" />
+                <DataGridTextColumn Header="User Id" Width="80" Binding="{Binding UserId}" />
                 <DataGridTextColumn Header="Pawn Money" Width="100" Binding="{Binding LoanAmount}" />
-                <DataGridTextColumn Header="Pawn Date" Width="100" Binding="{Binding ContractDate}" />
-                <DataGridTextColumn Header="Due Date" Width="100" Binding="{Binding ExpirationDate}" />
+                <DataGridTextColumn Header="Pawn Date" Width="140" Binding="{Binding ContractDate}" />
+                <DataGridTextColumn Header="Due Date" Width="140" Binding="{Binding ExpirationDate}" />
             </DataGrid.Columns>
         </DataGrid>
         <!-- Finalize Button -->

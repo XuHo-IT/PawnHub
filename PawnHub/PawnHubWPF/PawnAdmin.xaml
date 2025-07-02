@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="PawnAdmin" Height="525" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="PawnAdmin" Height="570" Width="1150">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
     <Grid>
-        <DataGrid Name="PawnItemsGrid" AutoGenerateColumns="False" Margin="10,34,10,110" IsReadOnly="True" SelectionChanged="PawnItemsGrid_SelectionChanged" Background="Gray">
+        <TextBlock Text="Pawn Shop Management" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
+
+        <DataGrid Name="PawnItemsGrid" AutoGenerateColumns="False" Margin="10,110,10,110" IsReadOnly="True" SelectionChanged="PawnItemsGrid_SelectionChanged" Background="Gray">
             <DataGrid.Columns>
                 <!-- Item Details -->
                 <DataGridTextColumn Header="Item ID" Binding="{Binding ItemId}" Width="50"/>
                 <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="200"/>
-                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="100"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="70"/>
                 <DataGridTextColumn Header="Expiration Date" Binding="{Binding ExpirationDate}" Width="150"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="70"/>
 
                 <!-- User Details -->
                 <DataGridTextColumn Header="User ID" Binding="{Binding UserId}" Width="50"/>
                 <DataGridTextColumn Header="User Name" Binding="{Binding UserName}" Width="100"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding UserEmail}" Width="200"/>
-                <DataGridTextColumn Header="Phone" Binding="{Binding UserPhone}" Width="150"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding UserPhone}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -45,9 +48,5 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-
-        <Button Content="Deny" Width="145" Height="60" Margin="470,432,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red" Foreground="White" Click="DenyButton_Click" />
-        <Button Content="Back to Main Menu" Width="165" Margin="10,429,0,17" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
-
     </Grid>
 </Window>

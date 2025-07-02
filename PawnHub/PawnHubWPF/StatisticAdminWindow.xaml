@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="StatisticAdminWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="StatisticAdminWindow" Height="570" Width="1300">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
@@ -26,23 +27,24 @@ Width="63"/>
         </StackPanel>
         <DockPanel>
 
+            <TextBlock DockPanel.Dock="Top" Text="Admin Statistics" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
             <!-- Menu Bar -->
             <Menu DockPanel.Dock="Top"/>
 
             <!-- Tab Control Area -->
-            <TabControl Margin="30" DockPanel.Dock="Top" Height="334">
+            <TabControl Margin="10 30 10 10" DockPanel.Dock="Top" Height="334">
                 <TabItem Header="Pawn Statistics">
                     <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" Background="Gray" Height="324" SelectionChanged="dataGridPawn_SelectionChanged" Margin="-4,0,4,0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="50"/>
-                            <DataGridTextColumn Header="Full Name" Binding="{Binding UserRealName}" Width="200"/>
+                            <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="90"/>
+                            <DataGridTextColumn Header="Full Name" Binding="{Binding UserRealName}" Width="130"/>
                             <DataGridTextColumn Header="Telephone" Binding="{Binding UserPhone}" Width="100"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding UserEmail}" Width="200"/>
-                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="200"/>
-                            <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="130"/>
+                            <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="130"/>
                             <DataGridTextColumn Header="Item Description" Binding="{Binding Description}" Width="150"/>
-                            <DataGridTextColumn Header="Item Money" Binding="{Binding ItemValue}" Width="100"/>
-                            <DataGridTextColumn Header="Interest" Binding="{Binding LoanAmount}" Width="100"/>
+                            <DataGridTextColumn Header="Item Money" Binding="{Binding ItemValue}" Width="80"/>
+                            <DataGridTextColumn Header="Interest" Binding="{Binding LoanAmount}" Width="70"/>
                             <DataGridTextColumn Header="Time Expiration" Binding="{Binding ExpirationDate}" Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -92,7 +94,7 @@ Width="63"/>
             <!-- Back to Main Menu Button -->
             <Button Content="Back to Main Menu" Width="165" Height="40" 
                     Background="Red" Foreground="White" Click="Menu_Click" 
-                    HorizontalAlignment="Left" DockPanel.Dock="Bottom"/>
+                    HorizontalAlignment="Center" DockPanel.Dock="Bottom"/>
         </DockPanel>
     </Grid>
 </Window>

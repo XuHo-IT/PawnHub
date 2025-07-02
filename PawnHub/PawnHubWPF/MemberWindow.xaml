@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MemberWindow" Height="450" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
@@ -30,8 +31,8 @@ Width="63"/>
                 <!-- Notifications -->
 
                 <!-- Store Info -->
-                <TextBlock Text="FBT Pawn Shop" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="White"/>
-                <TextBlock Text="FPT University, TP Đà Nẵng" FontSize="14" HorizontalAlignment="Center" Width="472" Foreground="White"/>
+                <TextBlock Text="FPT Pawn Shop" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="Orange"/>
+                <TextBlock Text="FPT University, TP Đà Nẵng" FontSize="14" Width="168" Foreground="White"/>
 
                 <!-- Buttons -->
                 <UniformGrid Columns="2" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">

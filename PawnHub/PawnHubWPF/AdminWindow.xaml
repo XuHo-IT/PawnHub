@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="450" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
@@ -31,9 +32,9 @@
                 <!-- Notifications -->
 
                 <!-- Store Info -->
-                <TextBlock Text="FBT Pawn Shop" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="White"/>
-                <TextBlock Text="Address: FPT University, TP Đà Nẵng" FontSize="14" HorizontalAlignment="Center" Width="472" Foreground="White"/>
-                <UniformGrid Columns="2" Width="400">
+                <TextBlock Text="FPT Pawn Shop" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="Orange"/>
+                <TextBlock Text="FPT University, TP Đà Nẵng" FontSize="14" Width="168" Foreground="White"/>
+                <UniformGrid Columns="2" Width="400" Margin="0 30 0 0">
                     <Button Content="PAWN" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click" Foreground="White"/>
                     <Button Content="LIQUIDATE" Width="150" Height="50" Background="Orange" FontWeight="Bold" Margin="10" Click="Button_Click_2" Foreground="White"/>
                     <Button Content="STATISTIC" Height="50" Background="Orange" FontWeight="Bold" Margin="25,0,-175,0" Click="Button_Click_1" VerticalContentAlignment="Center" Foreground="White"/>

@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WpfApp.PawnMemberWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Submit Item" Height="400" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Submit Item" Height="470" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill" />
     </Window.Background>
@@ -24,7 +25,7 @@
             
 
             <!-- Header Text -->
-            <TextBlock Text="Submit Pawn Item" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Margin="0,0,0,20"/>
+            <TextBlock Text="Submit Pawn Item" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0,0,0,20"/>
 
             <!-- Item Name -->
             <TextBlock Text="Item Name" Foreground="White"/>
@@ -52,8 +53,8 @@
 
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Back to Main Menu" Width="165" Background="Red" Foreground="White" Click="Menu_Click"/>
-                <Button Content="Submit Item" Width="120" Background="Green" Foreground="White" Click="SubmitItemButton_Click"/>
+                <Button Content="Back to Main Menu" Width="150" Height="40px" Background="Red" Foreground="White" Click="Menu_Click"/>
+                <Button Content="Submit Item" Width="150" Height="40px" Background="Green" Foreground="White" Click="SubmitItemButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
