@@ -5,22 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="Login" Height="500" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
         <StackPanel Height="24" VerticalAlignment="Top" Margin="0,0,0,0"/>
         <TextBlock Text="FPT PawnShop" Margin="288,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Width="266" Height="42" Foreground="White"/>
+
+        <!-- Login Form -->
         <TextBlock Text="Email Address" Margin="225,135,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>
         <TextBox Name="EmailTextBox" Width="223" Height="29" Margin="332,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-
         <TextBlock Text="Password" Margin="231,192,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Height="25" Width="62"/>
         <PasswordBox Name="PasswordBox" Width="222" Height="34" Margin="332,183,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
+        <!-- Login Buttons -->
         <Button Content="Sign in" Width="125" Height="58" Margin="430,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Green" Click="SignInButton_Click" Foreground="White"/>
         <Button Content="Reset" Width="122" Height="58" Margin="243,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Red" Click="ResetButton_Click" Foreground="White"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="135,37,0,62" HorizontalAlignment="Left" Width="500"/>
 
+        <!-- Divider -->
+        <Border BorderBrush="White" BorderThickness="1" Margin="200,340,200,0" VerticalAlignment="Top" Height="1"/>
+        <TextBlock Text="OR" Margin="385,330,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" FontSize="14" FontWeight="Bold"/>
+
+        <!-- Google Login Button -->
+        <Button Name="GoogleLoginButton" Content="🔑 Đăng nhập với Google" Width="250" Height="45" Margin="275,360,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                Background="#4285F4" Foreground="White" FontSize="14" FontWeight="Bold" Click="GoogleLoginButton_Click"/>
+
+        <!-- Status Label -->
+        <TextBlock Name="StatusLabel" Margin="200,420,200,0" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Foreground="Yellow" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" Margin="135,37,0,62" HorizontalAlignment="Left" Width="500"/>
     </Grid>
 </Window>
