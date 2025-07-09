@@ -1,0 +1,9 @@
+{
+  "ConnectionStrings": {
+    "PawnShop": "Data Source=localhost,1433;Database=PawnShop;User Id=sa;Password=1234;TrustServerCertificate=true;Encrypt=false;"
+  },
+  "DefaultAdmin": {
+    "Email": "admin@FUMiniHotelSystem.com",
+    "Password": "@@abc123@@"
+  }
+}
