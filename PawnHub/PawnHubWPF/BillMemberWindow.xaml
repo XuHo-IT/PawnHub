@@ -5,35 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="BillMemberWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="BillMemberWindow" Height="570" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
-        <!-- Account Information Section -->
-
-        <!-- Search Section -->
-
-        <!-- Data Grid for Pawned Items -->
-        <DataGrid Name="PawnItemsGrid" AutoGenerateColumns="False" Margin="10,42,10,90" IsReadOnly="True" Background="Gray">
-            <DataGrid.Columns>
-                <!-- Item Details -->
-              
-                <DataGridTextColumn Header="Item ID" Binding="{Binding ShopItemId}" Width="50"/>
-                <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
-                <DataGridTextColumn Header="DateBuy" Binding="{Binding DateBuy}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-
         <StackPanel Height="42" VerticalAlignment="Top">
-            <StackPanel Height="19">
-                <Label Content="Your Bill" Height="20" Padding="0,0,0,0" Background="gray"/>
+
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
+                <Label Content="Your Bill" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+                Padding="10,5"
+                Background="Red"
+                Foreground="White"
+                FontWeight="Bold"
+                Click="LogoutButton_Click"
+                Width="63"/>
+                </StackPanel>
             </StackPanel>
+
+
         </StackPanel>
 
-        <Button Content="Back to Main Menu" Width="128" Margin="10,356,0,22" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
+        <TabControl Margin="10,100,10,90">
+            <!-- Shop Items Tab -->
+            <TabItem Header="Shop Items">
+                <DataGrid Name="ShopItemsGrid" AutoGenerateColumns="False" IsReadOnly="True" Background="Gray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Item ID" Binding="{Binding ShopItemId}" Width="50"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
+                        <DataGridTextColumn Header="Date Buy" Binding="{Binding DateBuy}" Width="100"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <!-- Pawn Contracts Tab -->
+            <TabItem Header="Pawn Contracts">
+                <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" IsReadOnly="True" Background="Gray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Contract ID" Binding="{Binding PawnContractId}" Width="50"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="100"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding ItemDescription}" Width="200"/>
+                        <DataGridTextColumn Header="Date Buy" Binding="{Binding DateBuy}" Width="100"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding ItemPrice}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 450 0 0">
+            <Button Content="Back to Main Menu" Width="150" Height="40px" Background="Red" Foreground="White" Click="Menu_Click"/>
+        </StackPanel>
+        
     </Grid>
 </Window>

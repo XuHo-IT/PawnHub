@@ -5,34 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Liquidate" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Liquidate" Height="570" Width="850">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    <Grid Margin="0,0,0,4">
-
+    <Grid>
+        <TextBlock Text="Pawn Shop Management" FontSize="30" HorizontalAlignment="Center" Foreground="Orange" Margin="0 40 0 0"/>
         <!-- Search Section -->
 
 
 
         <!-- Data Grid for Pawned Items -->
-        <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" Margin="10,34,10,81" CanUserAddRows="False" SelectionMode="Single" Background="Gray">
+        <DataGrid Name="PawnContractsGrid" AutoGenerateColumns="False" Margin="10,110,10,81" CanUserAddRows="False" SelectionMode="Single" Background="Gray">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Contract Id" Width="110" Binding="{Binding ContractId}" />
-                <DataGridTextColumn Header="Pawn Item" Width="100" Binding="{Binding ItemId}" />
-                <DataGridTextColumn Header="Item Description" Width="170" Binding="{Binding Description}" />
-                <DataGridTextColumn Header="User Id" Width="100" Binding="{Binding UserId}" />
+                <DataGridTextColumn Header="Contract Id" Width="80" Binding="{Binding ContractId}" />
+                <DataGridTextColumn Header="Pawn Item" Width="80" Binding="{Binding ItemId}" />
+                <DataGridTextColumn Header="Item Description" Width="170" Binding="{Binding  Item.Description}" />
+                <DataGridTextColumn Header="User Id" Width="80" Binding="{Binding UserId}" />
                 <DataGridTextColumn Header="Pawn Money" Width="100" Binding="{Binding LoanAmount}" />
-                <DataGridTextColumn Header="Pawn Date" Width="100" Binding="{Binding ContractDate}" />
-                <DataGridTextColumn Header="Due Date" Width="100" Binding="{Binding ExpirationDate}" />
+                <DataGridTextColumn Header="Pawn Date" Width="140" Binding="{Binding ContractDate}" />
+                <DataGridTextColumn Header="Due Date" Width="140" Binding="{Binding ExpirationDate}" />
             </DataGrid.Columns>
         </DataGrid>
         <!-- Finalize Button -->
         <Button Content="Liquidate" Width="155" Height="56" Margin="635,364,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Green" Foreground="White" Click="BtnLiquidate_Click" />
         <Button Content="Back to Main Menu" Width="128" Margin="22,362,0,17" Background="Red" Foreground="White" Click="Menu_Click" RenderTransformOrigin="0.46,1.082" HorizontalAlignment="Left" />
 
-        <StackPanel Height="21" VerticalAlignment="Top">
-            <Label Content="PawnShop Management" Height="20" Padding="0,0,0,0" Background="gray"/>
+        <StackPanel Height="42" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Height="29" Background="Gray" Width="785">
+                <Label Content="Liquidate" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Logout"
+Padding="10,5"
+Background="Red"
+Foreground="White"
+FontWeight="Bold"
+Click="LogoutButton_Click"
+Width="63"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

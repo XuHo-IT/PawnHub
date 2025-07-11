@@ -1,6 +1,9 @@
-﻿using System.Windows;
-using BussinessObject;
+﻿using BussinessObject;
 using Repository;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Windows;
 
 namespace WpfApp
 {
@@ -16,12 +19,14 @@ namespace WpfApp
         private readonly UserRepository userRepository;
         private List<TransactionDetailViewModel> transactionDetails;
         private readonly CapitalRepository capitalRepository;
+        private readonly BillRepository billRepository;
 
         public ReBuyMemberWindow()
         {
             pawnContractRepository = new PawnContractRepository();
             itemRepository = new ItemRepository();
             userRepository = new UserRepository();
+            billRepository = new BillRepository();
             capitalRepository = new CapitalRepository();
 
             InitializeComponent();
@@ -63,7 +68,7 @@ namespace WpfApp
             dataGridPawn.ItemsSource = transactionDetails;
         }
 
-        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        private async void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedTransaction = dataGridPawn.SelectedItem as TransactionDetailViewModel;
 
@@ -77,10 +82,50 @@ namespace WpfApp
 
             if (result == MessageBoxResult.Yes)
             {
+                try
+                {
+                    using var httpClient = new HttpClient();
+                    var apiUrl = "https://localhost:7155/api/Stripe/create-checkout-session ";
+
+                    var payload = new
+                    {
+                        ItemName = selectedTransaction.ItemName,
+                        Price = selectedTransaction.ItemValue,
+                    };
+
+                    var response = await httpClient.PostAsJsonAsync(apiUrl, payload);
+                    response.EnsureSuccessStatusCode();
+
+                    var json = await response.Content.ReadFromJsonAsync<StripeResponse>();
+                    if (!string.IsNullOrEmpty(json?.SessionUrl))
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = json.SessionUrl,
+                            UseShellExecute = true
+                        });
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to start Stripe Checkout session.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Payment error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 decimal totalIncome = capitalRepository.GetTotalIncome();
                 totalIncome += selectedTransaction.ItemValue;
                 capitalRepository.UpdateTotalIncome(totalIncome);
-                pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
+                var bill = new Bill
+                {
+                    PawnContractId = selectedTransaction.ContractId,
+                    UserId = loggedInUserId,
+                    DateBuy = DateTime.Now,
+
+                };
+                billRepository.InsertBill(bill);
+                //pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
 
 
                 transactionDetails.Remove(selectedTransaction);
@@ -92,6 +137,16 @@ namespace WpfApp
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+
+            var loginWindow = new Login();
+            loginWindow.Show();
+
             this.Close();
         }
     }

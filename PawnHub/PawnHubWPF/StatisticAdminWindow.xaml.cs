@@ -1,6 +1,5 @@
 ﻿using BussinessObject;
 using Repository;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace WpfApp
@@ -66,6 +65,16 @@ namespace WpfApp
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.CurrentUser = null;
+
+            var loginWindow = new Login();
+            loginWindow.Show();
+
             this.Close();
         }
     }

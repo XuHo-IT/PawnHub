@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Login" Height="500" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="450" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
         <StackPanel Height="24" VerticalAlignment="Top" Margin="0,0,0,0"/>
-        <TextBlock Text="FPT PawnShop" Margin="288,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Width="266" Height="42" Foreground="White"/>
+        <TextBlock Text="FPT Pawn Shop" Margin="280,64,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Width="204" Height="42" Foreground="Orange"/>
+        <TextBlock Text="Email Address" Margin="220,135,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" FontSize="15"/>
+        <TextBox Name="EmailTextBox" Width="223" Height="29" Margin="332,132,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Montserrat" FontSize="14"/>
 
-        <!-- Login Form -->
-        <TextBlock Text="Email Address" Margin="225,135,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>
-        <TextBox Name="EmailTextBox" Width="223" Height="29" Margin="332,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <TextBlock Text="Password" Margin="231,192,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Height="25" Width="62"/>
-        <PasswordBox Name="PasswordBox" Width="222" Height="34" Margin="332,183,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Text="Password" Margin="220,188,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Height="25" Width="62" FontSize="15"/>
+        <PasswordBox Name="PasswordBox" Width="222" Height="29" Margin="332,183,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Montserrat" TextBlock.TextAlignment="Justify" FontSize="14"/>
 
+        <Button Content="Register" Width="122" Height="58" Margin="490,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Pink" Click="RegisterButton_Click" Foreground="White"/>
         <!-- Login Buttons -->
-        <Button Content="Sign in" Width="125" Height="58" Margin="430,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Green" Click="SignInButton_Click" Foreground="White"/>
-        <Button Content="Reset" Width="122" Height="58" Margin="243,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Red" Click="ResetButton_Click" Foreground="White"/>
+        <Button Content="Sign in" Width="122" Height="58" Margin="325,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Green" Click="SignInButton_Click" Foreground="White"/>
+        <Button Content="Reset" Width="122" Height="58" Margin="160,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Red" Click="ResetButton_Click" Foreground="White"/>
 
         <!-- Divider -->
         <Border BorderBrush="White" BorderThickness="1" Margin="200,340,200,0" VerticalAlignment="Top" Height="1"/>
