@@ -77,5 +77,10 @@ namespace WpfApp
 
             this.Close();
         }
+
+        private void dataGridPawn_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // Handle selection change if needed
+        }
     }
 }

@@ -17,6 +17,10 @@ namespace Repository
         public User GetUserByEmailAndPassword(string email, string password) => UserDAO.Instance.GetUserByEmailAndPassword(email, password);
 
         public bool UpdateUser(User user) => UserDAO.Instance.UpdateUser(user);
-       
+
+        // New methods for registration functionality
+        public bool AddUser(User user) => UserDAO.Instance.InsertUser(user);
+        public User GetUserByEmail(string email) => UserDAO.Instance.GetUserByEmail(email);
+        public User GetUserByUsername(string username) => UserDAO.Instance.GetUserByUsername(username);
     }
 }
