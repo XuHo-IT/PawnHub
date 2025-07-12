@@ -15,7 +15,7 @@
         <!-- Header Bar -->
         <StackPanel Height="42" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" Height="29" Background="Gray">
-                <Label Content="Chat with Lusi" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                <Label Content="Chat with Pawn Shop Assitant" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="Logout"
                             Padding="10,5"
