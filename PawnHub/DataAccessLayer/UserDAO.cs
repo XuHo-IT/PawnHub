@@ -43,10 +43,6 @@ namespace DataAccessLayer
             return _context.User.FirstOrDefault(u => u.EmailAddress == email && u.Password == password);
         }
 
-        public User GetUserByEmail(string email)
-        {
-            return _context.User.FirstOrDefault(u => u.EmailAddress == email);
-        }
 
         public User GetUserByGoogleId(string googleId)
         {
