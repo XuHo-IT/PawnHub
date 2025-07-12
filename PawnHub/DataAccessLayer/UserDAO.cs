@@ -114,5 +114,29 @@ namespace DataAccessLayer
             _context.SaveChanges();
             return user;
         }
+
+        public bool InsertUser(User user)
+        {
+            try
+            {
+                _context.User.Add(user);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.User.FirstOrDefault(u => u.EmailAddress.ToLower() == email.ToLower());
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            return _context.User.FirstOrDefault(u => u.UserName.ToLower() == username.ToLower());
+        }
     }
 }

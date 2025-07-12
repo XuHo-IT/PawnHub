@@ -22,5 +22,8 @@ namespace Repository
 
         public User CreateGoogleUser(string googleId, string email, string name, string picture) =>
             UserDAO.Instance.CreateGoogleUser(googleId, email, name, picture);
+        public bool AddUser(User user) => UserDAO.Instance.InsertUser(user);
+        public User GetUserByEmail(string email) => UserDAO.Instance.GetUserByEmail(email);
+        public User GetUserByUsername(string username) => UserDAO.Instance.GetUserByUsername(username);
     }
 }

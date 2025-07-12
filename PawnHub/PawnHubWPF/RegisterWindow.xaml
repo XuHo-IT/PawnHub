@@ -1,0 +1,137 @@
+<Window x:Class="WpfApp.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Register - FPT Pawn Shop" Height="600" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="img/img.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="20" Background="White" Opacity="0.95">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="20">
+                    <TextBlock Text="Đăng Ký Tài Khoản" 
+                              FontSize="24" 
+                              FontWeight="Bold" 
+                              HorizontalAlignment="Center" 
+                              Foreground="DarkBlue" 
+                              Margin="0,0,0,20"/>
+
+                    <!-- Username -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Tên Đăng Nhập *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="UsernameTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập tên đăng nhập của bạn"/>
+                    </StackPanel>
+
+                    <!-- Real Name -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Họ và Tên *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="RealNameTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập họ và tên đầy đủ"/>
+                    </StackPanel>
+
+                    <!-- Email -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Email *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="EmailTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập địa chỉ email hợp lệ"/>
+                    </StackPanel>
+
+                    <!-- Password -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Mật Khẩu *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <PasswordBox x:Name="PasswordBox" Height="30" FontSize="14" 
+                                     ToolTip="Mật khẩu ít nhất 8 ký tự"/>
+                    </StackPanel>
+
+                    <!-- Confirm Password -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Xác Nhận Mật Khẩu *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <PasswordBox x:Name="ConfirmPasswordBox" Height="30" FontSize="14" 
+                                     ToolTip="Nhập lại mật khẩu"/>
+                    </StackPanel>
+
+                    <!-- Phone -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Số Điện Thoại *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="PhoneTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập số điện thoại liên lạc"/>
+                    </StackPanel>
+
+                    <!-- Gender -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Giới Tính *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <ComboBox x:Name="GenderComboBox" Height="30" FontSize="14">
+                            <ComboBoxItem Content="Nam" IsSelected="True"/>
+                            <ComboBoxItem Content="Nữ"/>
+                            <ComboBoxItem Content="Khác"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Date of Birth -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Ngày Sinh *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <DatePicker x:Name="BirthDatePicker" Height="30" FontSize="14" 
+                                    ToolTip="Phải đủ 18 tuổi trở lên"/>
+                    </StackPanel>
+
+                    <!-- Address -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="Địa Chỉ *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="AddressTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập địa chỉ thường trú"/>
+                    </StackPanel>
+
+                    <!-- CID -->
+                    <StackPanel Margin="0,5">
+                        <TextBlock Text="CCCD/CMND *" FontWeight="Bold" Foreground="DarkBlue"/>
+                        <TextBox x:Name="CIDTextBox" Height="30" FontSize="14" 
+                                 ToolTip="Nhập số chứng minh nhân dân hoặc căn cước công dân"/>
+                    </StackPanel>
+
+                    <!-- Error Message -->
+                    <TextBlock x:Name="ErrorMessageTextBlock" 
+                              Foreground="Red" 
+                              FontWeight="Bold" 
+                              HorizontalAlignment="Center" 
+                              Margin="0,10" 
+                              TextWrapping="Wrap"
+                              Visibility="Collapsed"/>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                        <Button Content="Đăng Ký" 
+                                Width="120" Height="40" 
+                                Margin="5" 
+                                Background="Green" 
+                                Foreground="White" 
+                                FontWeight="Bold" 
+                                FontSize="14"
+                                Click="RegisterButton_Click"/>
+                        <Button Content="Hủy" 
+                                Width="120" Height="40" 
+                                Margin="5" 
+                                Background="Red" 
+                                Foreground="White" 
+                                FontWeight="Bold" 
+                                FontSize="14"
+                                Click="CancelButton_Click"/>
+                    </StackPanel>
+
+                    <TextBlock Text="Đã có tài khoản? " 
+                              HorizontalAlignment="Center" 
+                              Margin="0,10">
+                        <Hyperlink Click="LoginLink_Click" Foreground="Blue">
+                            <TextBlock Text="Đăng nhập ngay"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window> 
