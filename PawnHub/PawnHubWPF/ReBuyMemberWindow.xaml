@@ -26,7 +26,7 @@ Width="63"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="0,42,0,114" Background="Gray" SelectionChanged="dataGridPawn_SelectionChanged">
+        <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" Margin="0,42,0,114" Background="Gray">
             
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Your CID" Binding="{Binding CID}" Width="100"/>

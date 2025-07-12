@@ -34,7 +34,7 @@ Width="63"/>
             <!-- Tab Control Area -->
             <TabControl Margin="10 30 10 10" DockPanel.Dock="Top" Height="334">
                 <TabItem Header="Pawn Statistics">
-                    <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" Background="Gray" Height="324" SelectionChanged="dataGridPawn_SelectionChanged" Margin="-4,0,4,0">
+                    <DataGrid x:Name="dataGridPawn" AutoGenerateColumns="False" CanUserAddRows="False" Background="Gray" Height="324" Margin="-4,0,4,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="90"/>
                             <DataGridTextColumn Header="Full Name" Binding="{Binding UserRealName}" Width="130"/>
