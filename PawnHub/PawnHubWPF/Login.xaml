@@ -20,9 +20,22 @@
         <PasswordBox Name="PasswordBox" Width="222" Height="29" Margin="332,183,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Montserrat" TextBlock.TextAlignment="Justify" FontSize="14"/>
 
         <Button Content="Register" Width="122" Height="58" Margin="490,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Pink" Click="RegisterButton_Click" Foreground="White"/>
-        <Button Content="Sign in" Width="122" Height="58" Margin="325,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Green" Click="SignInButton_Click" Foreground="White"/>
+        <!-- Login Buttons -->
+        <Button Content="Sign in" Width="122" Height="58" Margin="324,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Green" Click="SignInButton_Click" Foreground="White"/>
         <Button Content="Reset" Width="122" Height="58" Margin="160,261,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Red" Click="ResetButton_Click" Foreground="White"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="135,37,0,62" HorizontalAlignment="Left" Width="500"/>
 
+        <!-- Divider -->
+        <Border BorderBrush="White" BorderThickness="1" Margin="200,340,200,0" VerticalAlignment="Top" Height="1"/>
+        <TextBlock Text="OR" Margin="385,330,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" FontSize="14" FontWeight="Bold"/>
+
+        <!-- Google Login Button -->
+        <Button Name="GoogleLoginButton" Content="🔑 Đăng nhập với Google" Width="250" Height="45" Margin="270,320,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                Background="#4285F4" Foreground="White" FontSize="14" FontWeight="Bold" Click="GoogleLoginButton_Click"/>
+
+        <!-- Status Label -->
+        <TextBlock Name="StatusLabel" Margin="200,420,200,0" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                   Foreground="Yellow" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" Margin="135,37,0,62" HorizontalAlignment="Left" Width="500"/>
     </Grid>
 </Window>

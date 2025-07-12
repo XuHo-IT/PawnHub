@@ -20,7 +20,7 @@ namespace WpfApp
         private List<TransactionDetailViewModel> transactionDetails;
         private readonly CapitalRepository capitalRepository;
         private readonly BillRepository billRepository;
-
+        private readonly HttpClient httpClient = new HttpClient();
         public ReBuyMemberWindow()
         {
             pawnContractRepository = new PawnContractRepository();
@@ -70,69 +70,97 @@ namespace WpfApp
 
         private async void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedTransaction = dataGridPawn.SelectedItem as TransactionDetailViewModel;
-
-            if (selectedTransaction == null)
+            if (dataGridPawn.SelectedItem is not TransactionDetailViewModel selectedTransaction)
             {
                 MessageBox.Show("Please select a transaction to buy.");
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to proceed with the buy?", "Confirm Purchase", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var confirm = MessageBox.Show("Are you sure you want to proceed with the buy?", "Confirm Purchase",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (result == MessageBoxResult.Yes)
+            if (confirm != MessageBoxResult.Yes) return;
+
+            try
             {
-                try
+                var apiUrl = "https://localhost:7155/api/Stripe/create-checkout-session";
+
+                var payload = new
                 {
-                    using var httpClient = new HttpClient();
-                    var apiUrl = "https://localhost:7155/api/Stripe/create-checkout-session ";
+                    ItemName = selectedTransaction.ItemName,
+                    Price = selectedTransaction.ItemValue
+                };
 
-                    var payload = new
+                var response = await httpClient.PostAsJsonAsync(apiUrl, payload);
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadFromJsonAsync<StripeResponse>();
+                if (!string.IsNullOrEmpty(json?.SessionUrl) && !string.IsNullOrEmpty(json?.SessionId))
+                {
+                    Process.Start(new ProcessStartInfo
                     {
-                        ItemName = selectedTransaction.ItemName,
-                        Price = selectedTransaction.ItemValue,
-                    };
+                        FileName = json.SessionUrl,
+                        UseShellExecute = true
+                    });
 
-                    var response = await httpClient.PostAsJsonAsync(apiUrl, payload);
-                    response.EnsureSuccessStatusCode();
-
-                    var json = await response.Content.ReadFromJsonAsync<StripeResponse>();
-                    if (!string.IsNullOrEmpty(json?.SessionUrl))
+                    // 🕒 Poll for up to 1 minute to wait for payment
+                    bool isPaid = false;
+                    for (int i = 0; i < 30; i++)
                     {
-                        Process.Start(new ProcessStartInfo
+                        await Task.Delay(2000);
+
+                        var statusResp = await httpClient.GetAsync(
+                            $"https://localhost:7155/api/Stripe/check-payment-status/{json.SessionId}");
+
+                        var status = await statusResp.Content.ReadAsStringAsync();
+                        if (status == "paid")
                         {
-                            FileName = json.SessionUrl,
-                            UseShellExecute = true
-                        });
+                            isPaid = true;
+                            break;
+                        }
+                    }
+
+                    if (isPaid)
+                    {
+                        // ✅ Payment successful
+                        MessageBox.Show("Payment successful!", "Stripe", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        // 💰 Update income and bill
+                        decimal totalIncome = capitalRepository.GetTotalIncome();
+                        totalIncome += selectedTransaction.ItemValue;
+                        capitalRepository.UpdateTotalIncome(totalIncome);
+
+                        var bill = new Bill
+                        {
+                            PawnContractId = selectedTransaction.ContractId,
+                            UserId = loggedInUserId,
+                            DateBuy = DateTime.Now
+                        };
+                        billRepository.InsertBill(bill);
+
+                        // Optionally remove contract or update status
+                        // pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
+
+                        // 🧹 Update UI
+                        transactionDetails.Remove(selectedTransaction);
+                        dataGridPawn.ItemsSource = null;
+                        dataGridPawn.ItemsSource = transactionDetails;
+
+                        MessageBox.Show("Transaction completed successfully.");
                     }
                     else
                     {
-                        MessageBox.Show("Failed to start Stripe Checkout session.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Payment not completed.", "Stripe", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Payment error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Failed to start Stripe Checkout session.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                decimal totalIncome = capitalRepository.GetTotalIncome();
-                totalIncome += selectedTransaction.ItemValue;
-                capitalRepository.UpdateTotalIncome(totalIncome);
-                var bill = new Bill
-                {
-                    PawnContractId = selectedTransaction.ContractId,
-                    UserId = loggedInUserId,
-                    DateBuy = DateTime.Now,
-
-                };
-                billRepository.InsertBill(bill);
-                //pawnContractRepository.RemoveItem(selectedTransaction.ContractId);
-
-
-                transactionDetails.Remove(selectedTransaction);
-                dataGridPawn.ItemsSource = null;
-                dataGridPawn.ItemsSource = transactionDetails;
-
-                MessageBox.Show("Transaction completed successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Payment error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Menu_Click(object sender, RoutedEventArgs e)
