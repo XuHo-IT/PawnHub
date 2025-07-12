@@ -1,6 +1,5 @@
 ﻿using BussinessObject;
 using BussinessObject.Services;
-using PawnHubWPF;
 using Repository;
 using System.Diagnostics;
 using System.Net.Http;
@@ -48,6 +47,7 @@ namespace WpfApp
         {
             try
             {
+
                 StatusLabel.Text = "Đang mở trình duyệt để đăng nhập Google...";
                 GoogleLoginButton.IsEnabled = false;
 
@@ -73,6 +73,7 @@ namespace WpfApp
 
                 // Bắt đầu HTTP listener để nhận callback
                 await HandleGoogleCallback(redirectUri);
+
             }
             catch (Exception ex)
             {
@@ -85,6 +86,7 @@ namespace WpfApp
         {
             try
             {
+
                 using var httpClient = new HttpClient();
 
                 // Tạo một HTTP listener đơn giản
@@ -263,7 +265,7 @@ namespace WpfApp
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)

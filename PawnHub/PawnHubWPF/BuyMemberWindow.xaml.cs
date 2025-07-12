@@ -17,6 +17,8 @@ namespace WpfApp
         private readonly ShopItemRepository shopItemRepository;
         private readonly BillRepository billRepository;
         private readonly CapitalRepository capitalRepository;
+        private readonly HttpClient httpClient = new HttpClient();
+
 
 
         public BuyMemberWindow()
@@ -42,31 +44,51 @@ namespace WpfApp
                 {
                     try
                     {
-                        using var httpClient = new HttpClient();
-                        var apiUrl = "https://localhost:7155/api/Stripe/create-checkout-session ";
-
                         var payload = new
                         {
                             ItemName = selectedItem.Name,
                             Price = selectedItem.Price
                         };
 
-                        var response = await httpClient.PostAsJsonAsync(apiUrl, payload);
+                        var response = await httpClient.PostAsJsonAsync("https://localhost:7155/api/stripe/create-checkout-session", payload);
                         response.EnsureSuccessStatusCode();
 
                         var json = await response.Content.ReadFromJsonAsync<StripeResponse>();
-                        if (!string.IsNullOrEmpty(json?.SessionUrl))
+                        if (!string.IsNullOrEmpty(json?.SessionUrl) && !string.IsNullOrEmpty(json?.SessionId))
                         {
+                            // Open Stripe Checkout
                             Process.Start(new ProcessStartInfo
                             {
                                 FileName = json.SessionUrl,
                                 UseShellExecute = true
                             });
+
+                            // Polling for payment confirmation
+                            bool isPaid = false;
+                            for (int i = 0; i < 30; i++) // Poll for 1 minute max
+                            {
+                                await Task.Delay(2000);
+
+                                var statusResp = await httpClient.GetAsync($"https://localhost:7155/api/stripe/check-payment-status/{json.SessionId}");
+                                var status = await statusResp.Content.ReadAsStringAsync();
+
+                                if (status == "paid")
+                                {
+                                    isPaid = true;
+                                    break;
+                                }
+                            }
+
+                            if (isPaid)
+                            {
+                                MessageBox.Show("Payment successful!", "Stripe", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Payment not completed.", "Stripe", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Failed to start Stripe Checkout session.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+
                     }
                     catch (Exception ex)
                     {

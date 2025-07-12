@@ -45,7 +45,7 @@ namespace WpfApp
         }
         private void SignOutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+        }
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             SessionManager.CurrentUser = null;

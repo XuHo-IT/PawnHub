@@ -438,12 +438,10 @@ namespace BussinessObject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("CID")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -452,20 +450,30 @@ namespace BussinessObject.Migrations
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("GoogleId")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsGoogleAccount")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("ProfilePicture")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Telephone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -482,6 +490,13 @@ namespace BussinessObject.Migrations
 
                     b.HasKey("UserID");
 
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
+
+                    b.HasIndex("GoogleId")
+                        .IsUnique()
+                        .HasFilter("[GoogleId] IS NOT NULL");
+
                     b.ToTable("User");
 
                     b.HasData(
@@ -493,6 +508,7 @@ namespace BussinessObject.Migrations
                             Dob = new DateTime(1990, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "john.doe@example.com",
                             Gender = "Male",
+                            IsGoogleAccount = false,
                             Password = "Password123",
                             Telephone = "123-456-7890",
                             UserName = "john_doe",
@@ -507,6 +523,7 @@ namespace BussinessObject.Migrations
                             Dob = new DateTime(1988, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "jane.smith@example.com",
                             Gender = "Female",
+                            IsGoogleAccount = false,
                             Password = "Password456",
                             Telephone = "098-765-4321",
                             UserName = "jane_smith",
@@ -521,6 +538,7 @@ namespace BussinessObject.Migrations
                             Dob = new DateTime(1985, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "michael.brown@example.com",
                             Gender = "Male",
+                            IsGoogleAccount = false,
                             Password = "Password789",
                             Telephone = "555-123-4567",
                             UserName = "michael_brown",
@@ -535,6 +553,7 @@ namespace BussinessObject.Migrations
                             Dob = new DateTime(1992, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "emily.jones@example.com",
                             Gender = "Male",
+                            IsGoogleAccount = false,
                             Password = "Password101",
                             Telephone = "444-987-6543",
                             UserName = "emily_jones",
@@ -549,6 +568,7 @@ namespace BussinessObject.Migrations
                             Dob = new DateTime(1978, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmailAddress = "robert.smith@example.com",
                             Gender = "Female",
+                            IsGoogleAccount = false,
                             Password = "Password202",
                             Telephone = "333-222-1111",
                             UserName = "robert_smith",
