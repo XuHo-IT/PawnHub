@@ -15,13 +15,6 @@
             <StackPanel Orientation="Horizontal" Height="29" Background="Gray" Width="785">
                 <Label Content="Buying" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                    <Button Content="Logout"
-   Padding="10,5"
-   Background="Red"
-   Foreground="White"
-   FontWeight="Bold"
-   Click="LogoutButton_Click"
-   Width="63"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
